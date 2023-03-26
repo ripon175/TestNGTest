@@ -10,6 +10,8 @@
           <include name="excelTestData"/>
           <include name="QuitBrowser"/>
           <include name="dataclose"/>
+          <include name="paramTest"/>
+          <include name="LoginSuccessTest"/>
           <include name="testData"/>
           <include name="SetUp"/>
         </methods>

@@ -2,12 +2,17 @@ package testcases;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -31,13 +36,18 @@ public class BaseClass {
     
     
     @BeforeMethod
-    public void SetUp(){
+    public void SetUp() throws MalformedURLException{
     //launch application
-   	 //System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-   	 //driver=new FirefoxDriver();
+   	 ////System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+   	 ////driver=new FirefoxDriver();
+   	 DesiredCapabilities cap = new DesiredCapabilities();
+   	 cap.setPlatform(Platform.WINDOWS);
+   	 cap.setBrowserName("chrome");
+   	 URL url = new URL("http://10.210.156.86:4444/wd/hub");
+   	 driver = new RemoteWebDriver(url,cap);
    	 
-	 WebDriverManager.chromedriver().setup();
-	 driver = new ChromeDriver();
+	 //WebDriverManager.chromedriver().setup();
+	 //driver = new ChromeDriver();
    	 
    	 driver.get("https://www.simplilearn.com/");
    	 driver.manage().window().maximize();
